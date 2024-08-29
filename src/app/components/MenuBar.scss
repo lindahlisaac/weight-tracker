@@ -1,0 +1,21 @@
+.menuBar {
+    position: fixed;
+    text-align: center; 
+    bottom: 0px;
+    width: 100%; 
+    height: 8%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+}
+
+.addWeightButton {
+    background-color: red;
+    color: black;
+}
+
+.weightInputField {
+    padding-right: 1%;
+    width: 20%;
+}
