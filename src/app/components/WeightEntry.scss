@@ -1,0 +1,45 @@
+.weightPageContainer {
+    display: flex;
+    flex-direction: row;
+    
+}
+
+.weightEntryTable {
+    display: flex;
+    align-items: stretch;
+    flex: 25%;
+    border-color: white;
+    background-color: gray;
+}
+
+.weightEntryTableHeaderDate {
+    padding-right: 500px;
+}
+
+.weightEntryTableHeaderWeight {
+    margin-right: 50%;
+}
+
+.weightEntryBox {
+    display: flex;
+    border-color: white;
+    flex: 50%;
+    border-width: 1px;
+    gap: 20px;
+    width: 300px;
+    align-items: stretch;
+    align-content: space-evenly;
+    justify-content: flex-start;
+}
+
+.weightEntryGraphContainer {
+    flex: 75%;
+}
+
+.weightEntryGraph {
+    background-color: darkgrey;
+    height: 100%;
+    align-items: center;
+    flex-grow: inherit;
+    border-width: 1px;
+}

@@ -5,8 +5,7 @@ import '../components/MenuBar.scss'
 import Button from '@mui/material/Button';
 import { TextField } from '@mui/material';
 import { useState } from 'react';
-import WeightEntryList from '../components/WeightEntryList';
-import WeightEntry from '../components/WeightEntry';
+import '../components/WeightEntry.scss';
 
 function getFormattedDate() {
     var date = new Date()
@@ -16,10 +15,15 @@ function getFormattedDate() {
     if (month < 10) {
         month = '0' + month
     }
+    console.log(day)
     if (day < 10) {
+        if (day === 0) {
+            ++day
+        }
         day = '0' + day
     }
-
+    console.log(date)
+    
     return year + '-' + month + '-' + day
 }
 
@@ -46,16 +50,43 @@ const BaseLayout = () => {
         console.log(weightEntryList)
     }
 
+    function buildWeightEntryBox({ weightEntry }) {
+        return (
+            <div className='weightEntryBox'>
+                <li>{weightEntry.date}</li>
+                <li> {weightEntry.weight}</li>
+            </div>
+        )
+    }
+
+    function buildTableHeaderRowBox() {
+        return (
+            <div>
+                <li className='weightEntryTableHeaderDate'>Date</li>
+                <li className='weightEntryTableHeaderWeight'>Weight</li>
+            </div>
+        )
+    }
+
     return (
         <>
             <Header />
-            <ul>
-                {weightEntryList.map((weightEntry) => (
-                    <div>
-                        <li key={weightEntry.id}>{weightEntry.weight}     {weightEntry.date}</li>
+            <div className='weightPageContainer'>
+                <div className='weightEntryTable'>
+                    <ul>{buildTableHeaderRowBox}</ul>
+                    <ul>
+                        {weightEntryList.map((weightEntry) => (
+                            buildWeightEntryBox({ weightEntry })
+                        ))}
+                    </ul>
+                </div>
+                <div className='weightEntryGraphContainer'>
+                    <div className='weightEntryGraph'>
+                        weightEntryGraph
                     </div>
-                ))}
-            </ul>
+                    
+                </div>
+            </div>
             <div style={{ position: "relative", backgroundColor: "black" }}>
                 <div className='menuBar'>
                     <TextField id='weight-input-field' className='weightInputField' value={weightInput} onChange={(e) => setWeightInput(e.target.value)} />
