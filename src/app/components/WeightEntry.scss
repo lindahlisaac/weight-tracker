@@ -1,9 +1,9 @@
 .weightPageContainer {
     display: grid;
     grid-template-areas: 
-    'table  table   .       .       .'
-    'table  table   .       .       .'
-    'table  table   .       .       .'
+    'table  table   filter  stats   stats'
+    'table  table   filter  stats   stats'
+    'table  table   filter  stats   stats'
     'graph  graph   graph   graph   graph'
     'graph  graph   graph   graph   graph';
     grid-template-rows: repeat(5, 150px);
@@ -32,8 +32,8 @@
 
 .weightEntryBox {
     display: flex;
-    // border-color: white;
-    // border-width: 1px;
+    border-color: white;
+    border-width: 1px;
     gap: 20px;
     width: 100%;
     align-items: stretch;
@@ -43,11 +43,28 @@
 
 .weightEntryGraphContainer {
     grid-area: graph;
+    align-content: center;
+    justify-content: center;
 }
 
 .weightEntryGraph {
-    background-color: darkgrey;
+    background-color: white;
     height: 100%;
     align-items: center;
     border-width: 1px;
+}
+
+.filterBoxContainer {
+    background-color: blue;
+    grid-area: filter;
+    height: 100%;
+}
+
+
+
+
+
+.statisticsContainer {
+    background-color: darkseagreen;
+    grid-area: stats;
 }

@@ -1,5 +1,4 @@
 "use client";
-import MenuBar from '../components/MenuBar';
 import Header from '../components/Header';
 import '../components/MenuBar.scss'
 import Button from '@mui/material/Button';
@@ -42,10 +41,8 @@ function getFormattedDateGraph() {
         }
         day = '0' + day
     }
-    console.log(date)
-    
-    // return year + '-' + month + '-' + day
-    return month + day
+    // return month + '-' + day
+    return month + "-" + day
 }
 
 const weightEntry = {
@@ -67,9 +64,20 @@ export const data = [
     ["20240830", 125]
   ]
 
-  export const graphDataArray = [
+  export const weightArray = [
     ["Date", "Weight"],
-  ]
+    ["08-13", 158.7],
+    ["08-16", 158.8],
+    ["08-19", 159.1],
+    ["08-20", 159.6],
+    ["08-21", 160.1],
+    ["08-22", 159.6],
+    ["08-24", 162],
+    ["08-25", 162],
+    ["08-28", 160.2],
+    ["08-30", 161.8],
+    ["09-01", 160.9],
+];
 
 export const options = {
     title: "Weight Progress",
@@ -81,8 +89,8 @@ const BaseLayout = () => {
 
     const [weightInput, setWeightInput] = useState()
     const [entryId, setEntryId] = useState(0)
-    const [weightEntryList, setWeightEntryList] = useState(initData)
-    const [graphArray, setGraphArray] = useState([["Date", "Weight"],['08-30', 145]])
+    const [weightEntryList, setWeightEntryList] = useState([{date: getFormattedDateFull(), weight: weightArray[weightArray.length-1][1], key: 0}])
+    const [graphArray, setGraphArray] = useState( weightArray )
 
     function addToList({ weightInput }) {
         // build list for the table
@@ -90,7 +98,7 @@ const BaseLayout = () => {
         weightEntry.date = getFormattedDateFull()
         console.log(weightEntry)
         let tempList = weightEntryList.slice()
-        tempList.push({ weight: weightEntry.weight, date: weightEntry.date, id: entryId})
+        tempList.push({ weight: weightEntry.weight, date: weightEntry.date, key: entryId})
         setWeightEntryList(tempList)
         setEntryId(entryId + 1)
         console.log(weightEntryList)
@@ -133,7 +141,7 @@ const BaseLayout = () => {
         return (
             <div>
                 <Chart
-                    chartType="ScatterChart"
+                    chartType="LineChart"
                     data={graphArray}
                     width="100%"
                     height="100%"
@@ -149,16 +157,21 @@ const BaseLayout = () => {
             <Header />
             <div className='weightPageContainer'>
                 <div className='weightEntryTable'>
-                    
                     <ul>
                         {weightEntryList.map((weightEntry) => (
                             buildWeightEntryBox({ weightEntry })
                         ))}
                     </ul>
                 </div>
+                <div className='filterBoxContainer'>
+                    Filter Box
+                </div>
+                <div className='statisticsContainer'>
+                    Statistics
+                </div>
                 <div className='weightEntryGraphContainer'>
                     <div className='weightEntryGraph'>
-                        {buildWeightGraph()}
+                        { buildWeightGraph() }
                     </div>
                     
                 </div>
