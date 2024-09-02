@@ -1,14 +1,18 @@
 .header {
     display: flex;
     align-items: center;
-    width: 100%; 
+    width: 99%; 
     height: 20%;
     top: 0%;
     background-color: gray;
     justify-content: center;
+    padding: 3px;
+    margin: 3px;
+    border-radius: 30px;
 }
 
 .headerFont {
     font-size: 28px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 900;
 }

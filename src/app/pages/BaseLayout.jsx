@@ -1,12 +1,13 @@
 "use client";
+import * as React from 'react';
 import Header from '../components/Header';
-import '../components/MenuBar.scss'
 import Button from '@mui/material/Button';
 import { TextField } from '@mui/material';
 import { useState } from 'react';
-import '../components/WeightEntry.scss';
-import * as React from 'react';
 import { Chart } from "react-google-charts";
+
+import '../components/WeightEntry.scss';
+import '../components/MenuBar.scss'
 
 function getFormattedDateFull() {
     var date = new Date()
@@ -22,7 +23,6 @@ function getFormattedDateFull() {
         }
         day = '0' + day
     }
-    console.log(date)
     
     return year + '-' + month + '-' + day
 }
@@ -59,11 +59,6 @@ export const data = [
     ["2007", 1030, 540],
   ];
 
-  export const initData = [
-    ["Date", "Weight"],
-    ["20240830", 125]
-  ]
-
   export const weightArray = [
     ["Date", "Weight"],
     ["08-13", 158.7],
@@ -77,6 +72,7 @@ export const data = [
     ["08-28", 160.2],
     ["08-30", 161.8],
     ["09-01", 160.9],
+    ["09-02", 161.4],//12
 ];
 
 export const options = {
@@ -89,8 +85,10 @@ const BaseLayout = () => {
 
     const [weightInput, setWeightInput] = useState()
     const [entryId, setEntryId] = useState(0)
-    const [weightEntryList, setWeightEntryList] = useState([{date: getFormattedDateFull(), weight: weightArray[weightArray.length-1][1], key: 0}])
+    const [displayEntryValue, setDisplayEntryValue] = useState(5)
+    const [weightEntryList, setWeightEntryList] = useState(getLatestEntries())
     const [graphArray, setGraphArray] = useState( weightArray )
+    
 
     function addToList({ weightInput }) {
         // build list for the table
@@ -113,11 +111,27 @@ const BaseLayout = () => {
         setGraphArray(tempArray)
     }
 
+    function getLatestEntries() {
+        let tempArray = []
+        // for (var i = weightArray.length - 1; i > weightArray.length - displayEntryValue - 1; i--) {
+        var startIndex = weightArray.length - displayEntryValue
+        for (var i = startIndex; i < weightArray.length; i++) {
+            let weightVal = weightArray[i][1]
+            let dateVal = weightArray[i][0]
+            tempArray.push({weight: weightVal, date: dateVal, key: i})
+        }
+        return tempArray;
+    }
+
     function buildWeightEntryBox({ weightEntry }) {
         return (
-            <div className='weightEntryBox'>
-                <li>{weightEntry.date}</li>
-                <li> {weightEntry.weight}</li>
+            <div className='weightEntryBox' key={weightEntry.key}>
+                <div className='weightEntryWeight'>
+                    <p>{weightEntry.weight}</p>
+                </div>
+                <div className='weightEntryDate'>
+                    <p>{weightEntry.date}</p>
+                </div>
             </div>
         )
     }
@@ -157,11 +171,11 @@ const BaseLayout = () => {
             <Header />
             <div className='weightPageContainer'>
                 <div className='weightEntryTable'>
-                    <ul>
-                        {weightEntryList.map((weightEntry) => (
+                    {
+                        weightEntryList.map((weightEntry) => (
                             buildWeightEntryBox({ weightEntry })
-                        ))}
-                    </ul>
+                        ))
+                    }
                 </div>
                 <div className='filterBoxContainer'>
                     Filter Box
