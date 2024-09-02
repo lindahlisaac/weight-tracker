@@ -1,19 +1,29 @@
 .weightPageContainer {
-    display: flex;
-    flex-direction: row;
-    
+    display: grid;
+    grid-template-areas: 
+    'table  table   filter  stats   stats'
+    'table  table   filter  stats   stats'
+    'table  table   filter  stats   stats'
+    'graph  graph   graph   graph   graph'
+    'graph  graph   graph   graph   graph';
+    grid-template-rows: repeat(5, 150px);
+    grid-template-columns: repeat(5, 1fr);
 }
 
 .weightEntryTable {
     display: flex;
     align-items: stretch;
-    flex: 25%;
     border-color: white;
-    background-color: gray;
+    background-color: rgba(255, 0, 0, 0.062);
+    grid-area: table;
+}
+
+.tableHeaderRow {
+    background-color: blue;
 }
 
 .weightEntryTableHeaderDate {
-    padding-right: 500px;
+    padding-right: 50px;
 }
 
 .weightEntryTableHeaderWeight {
@@ -23,23 +33,38 @@
 .weightEntryBox {
     display: flex;
     border-color: white;
-    flex: 50%;
     border-width: 1px;
     gap: 20px;
-    width: 300px;
+    width: 100%;
     align-items: stretch;
     align-content: space-evenly;
     justify-content: flex-start;
 }
 
 .weightEntryGraphContainer {
-    flex: 75%;
+    grid-area: graph;
+    align-content: center;
+    justify-content: center;
 }
 
 .weightEntryGraph {
-    background-color: darkgrey;
+    background-color: white;
     height: 100%;
     align-items: center;
-    flex-grow: inherit;
     border-width: 1px;
+}
+
+.filterBoxContainer {
+    background-color: blue;
+    grid-area: filter;
+    height: 100%;
+}
+
+
+
+
+
+.statisticsContainer {
+    background-color: darkseagreen;
+    grid-area: stats;
 }
