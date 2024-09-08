@@ -1,11 +1,11 @@
 import './Header.scss'
 
-function Header() {
+function Header({ headerValue }) {
     return (
         <div className="header">
-            <header className='headerFont'>
-                Weight Tracker
-            </header>
+            <h1 className='headerFont'>
+                {headerValue}
+            </h1>
         </div>
     )
 }

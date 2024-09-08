@@ -1,3 +1,8 @@
+$box-bg-color: #222831;
+$main-bg-color: #222831;
+$box-border-radius: 30px;
+
+
 .weightPageContainer {
     display: grid;
     grid-template-areas: 
@@ -6,9 +11,9 @@
     'table  filter  stats  stats   stats'
     'graph   graph   graph   graph   graph'
     'graph   graph   graph   graph   graph';
-    grid-template-rows: repeat(5, 150px);
+    grid-template-rows: repeat(5, 125px);
     grid-template-columns: repeat(5, 1fr);
-
+    background-color: $main-bg-color;
 }
 
 .weightEntryTable {
@@ -25,7 +30,7 @@
 
     border-color: gray;
     border-width: 2px;
-    background-color: gray;
+    background-color: $box-bg-color;
     opacity: 100;
     border-radius: 30px;
 }
@@ -41,8 +46,10 @@
     justify-content: center;
     align-items: center;
 
-    background-color: black;
-    border-radius: 30px;
+    background-color: #C8ACD6;
+    border-radius: 30px  / 60px;
+    border-color: #8a011d;
+    border-width: 3px;
     opacity: 100%;
 
     width: 100%;
@@ -74,24 +81,32 @@
     grid-area: graph;
     align-content: center;
     justify-content: center;
+    height: 80%;
 }
 
 .weightEntryGraph {
     background-color: white;
-    height: 100%;
-    align-items: center;
+    height: 200px;
+    align-items: flex-start;
     border-width: 1px;
+    background-color: #222831
 }
 
 .filterBoxContainer {
-    background-color: gray;
+    background-color: $box-bg-color;
     grid-area: filter;
 
-    background-color: gray;
     opacity: 100;
     border-radius: 30px;
     padding: 3px;
     margin: 3px;
+
+    border-color: gray;
+    border-width: 2px;
+}
+
+.lineChart {
+    background-color: #222831;
 }
 
 
@@ -105,7 +120,7 @@
 
     border-color: gray;
     border-width: 2px;
-    background-color: gray;
+    background-color: $box-bg-color;
     opacity: 100;
     border-radius: 30px;
 }
