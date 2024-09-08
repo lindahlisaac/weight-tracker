@@ -19,13 +19,14 @@ function MenuBar() {
   }
 
   return (
-    <div style={{position: "relative", backgroundColor: "black"}}>
       <div className='menuBar'>
-      <TextField className='weightInputField' value={weightInput} onChange={e => setWeightInput(e.target.value)}/>
-      <Button className='addWeightButton' onClick={() => {
-        addWeightEntry({weightInput});}}>Add Weight Entry</Button>
+        <div className='actionContainer'>
+          <TextField className='weightInputField' value={weightInput} onChange={e => setWeightInput(e.target.value)}/>
+          <Button className='addWeightButton' onClick={() => {
+            addWeightEntry({weightInput});}}>Add Weight Entry
+          </Button>
+        </div>
       </div>
-    </div>
   )
 }
 

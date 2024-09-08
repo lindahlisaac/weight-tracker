@@ -1,63 +1,112 @@
+$box-bg-color: #222831;
+$main-bg-color: #222831;
+$box-border-radius: 30px;
+
+
 .weightPageContainer {
     display: grid;
     grid-template-areas: 
-    'table  table   filter  stats   stats'
-    'table  table   filter  stats   stats'
-    'table  table   filter  stats   stats'
-    'graph  graph   graph   graph   graph'
-    'graph  graph   graph   graph   graph';
-    grid-template-rows: repeat(5, 150px);
+    'table  filter  stats  stats   stats'
+    'table  filter  stats  stats   stats'
+    'table  filter  stats  stats   stats'
+    'graph   graph   graph   graph   graph'
+    'graph   graph   graph   graph   graph';
+    grid-template-rows: repeat(5, 125px);
     grid-template-columns: repeat(5, 1fr);
+    background-color: $main-bg-color;
 }
 
 .weightEntryTable {
     display: flex;
-    align-items: stretch;
-    border-color: white;
-    background-color: rgba(255, 0, 0, 0.062);
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+
     grid-area: table;
+    overflow: auto;
+    min-height: 0; //stop vertical overflow
+    padding: 3px;
+    margin: 3px;
+
+    border-color: gray;
+    border-width: 2px;
+    background-color: $box-bg-color;
+    opacity: 100;
+    border-radius: 30px;
 }
 
-.tableHeaderRow {
-    background-color: blue;
-}
+.weightEntryTableHeader {
 
-.weightEntryTableHeaderDate {
-    padding-right: 50px;
-}
-
-.weightEntryTableHeaderWeight {
-    margin-right: 50%;
 }
 
 .weightEntryBox {
     display: flex;
-    border-color: white;
-    border-width: 1px;
-    gap: 20px;
+    flex-direction: column;
+    // align-content: space-evenly;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #C8ACD6;
+    border-radius: 30px  / 60px;
+    border-color: #8a011d;
+    border-width: 3px;
+    opacity: 100%;
+
     width: 100%;
-    align-items: stretch;
-    align-content: space-evenly;
-    justify-content: flex-start;
+    padding: 3%;
+    margin-top: 3px;
+    margin-bottom: 3px;
 }
+
+.weightEntryDate {
+    display: flex;
+    flex-wrap: nowrap;
+    flex: 50%;
+    justify-content: center;
+    font-weight: 400;
+    font-size: x-small;
+}
+
+.weightEntryWeight {
+    display: flex;
+    flex-wrap: nowrap;
+    flex: 50%;
+    justify-content: center;
+    font-weight: 900;
+    font-size: large;
+}
+
 
 .weightEntryGraphContainer {
     grid-area: graph;
     align-content: center;
     justify-content: center;
+    height: 80%;
 }
 
 .weightEntryGraph {
     background-color: white;
-    height: 100%;
-    align-items: center;
+    height: 200px;
+    align-items: flex-start;
     border-width: 1px;
+    background-color: #222831
 }
 
 .filterBoxContainer {
-    background-color: blue;
+    background-color: $box-bg-color;
     grid-area: filter;
-    height: 100%;
+
+    opacity: 100;
+    border-radius: 30px;
+    padding: 3px;
+    margin: 3px;
+
+    border-color: gray;
+    border-width: 2px;
+}
+
+.lineChart {
+    background-color: #222831;
 }
 
 
@@ -65,6 +114,13 @@
 
 
 .statisticsContainer {
-    background-color: darkseagreen;
     grid-area: stats;
+    padding: 3px;
+    margin: 3px;
+
+    border-color: gray;
+    border-width: 2px;
+    background-color: $box-bg-color;
+    opacity: 100;
+    border-radius: 30px;
 }
